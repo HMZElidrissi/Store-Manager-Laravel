@@ -9,68 +9,12 @@
     <title>Document</title>
 </head>
 <body class="h-full">
-<!--
-  This example requires Tailwind CSS v2.0+
-
-  This example requires some changes to your config:
-
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
-<!--
-  This example requires updating your template:
-
-  ```
-  <html class="h-full bg-gray-100">
-  <body class="h-full">
-  ```
--->
 <div>
-  <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
-  <div class="fixed inset-0 flex z-40 md:hidden" role="dialog" aria-modal="true">
-    <!--
-      Off-canvas menu overlay, show/hide based on off-canvas menu state.
-
-      Entering: "transition-opacity ease-linear duration-300"
-        From: "opacity-0"
-        To: "opacity-100"
-      Leaving: "transition-opacity ease-linear duration-300"
-        From: "opacity-100"
-        To: "opacity-0"
-    -->
-    <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
-
-    <!--
-      Off-canvas menu, show/hide based on off-canvas menu state.
-
-      Entering: "transition ease-in-out duration-300 transform"
-        From: "-translate-x-full"
-        To: "translate-x-0"
-      Leaving: "transition ease-in-out duration-300 transform"
-        From: "translate-x-0"
-        To: "-translate-x-full"
-    -->
+  <div id="off-canvas-menu" class="hidden fixed inset-0 z-40" role="dialog" aria-modal="true">
+    <div id="off-canvas-menu-overlay" class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
     <div class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-white">
-      <!--
-        Close button, show/hide based on off-canvas menu state.
-
-        Entering: "ease-in-out duration-300"
-          From: "opacity-0"
-          To: "opacity-100"
-        Leaving: "ease-in-out duration-300"
-          From: "opacity-100"
-          To: "opacity-0"
-      -->
       <div class="absolute top-0 right-0 -mr-12 pt-2">
-        <button type="button" class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+        <button id="close-button" type="button" class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
           <span class="sr-only">Close sidebar</span>
           <!-- Heroicon name: outline/x -->
           <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -84,13 +28,7 @@
       </div>
       <div class="mt-5 flex-1 h-0 overflow-y-auto">
         <nav class="px-2 space-y-1">
-          <!-- Current: "bg-gray-100 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
           <a href="#" class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md">
-            <!--
-              Heroicon name: outline/home
-
-              Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500"
-            -->
             <svg class="text-gray-500 mr-4 flex-shrink-0 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
             </svg>
@@ -156,11 +94,6 @@
         <nav class="flex-1 px-2 pb-4 space-y-1">
           <!-- Current: "bg-gray-100 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
           <a href="#" class="bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-            <!--
-              Heroicon name: outline/home
-
-              Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500"
-            -->
             <svg class="text-gray-500 mr-3 flex-shrink-0 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
             </svg>
@@ -212,7 +145,7 @@
   </div>
   <div class="md:pl-64 flex flex-col flex-1">
     <div class="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white shadow">
-      <button type="button" class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden">
+      <button id="open-button" type="button" class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden">
         <span class="sr-only">Open sidebar</span>
         <!-- Heroicon name: outline/menu-alt-2 -->
         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -251,17 +184,6 @@
                 <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
               </button>
             </div>
-
-            <!--
-              Dropdown menu, show/hide based on menu state.
-
-              Entering: "transition ease-out duration-100"
-                From: "transform opacity-0 scale-95"
-                To: "transform opacity-100 scale-100"
-              Leaving: "transition ease-in duration-75"
-                From: "transform opacity-100 scale-100"
-                To: "transform opacity-0 scale-95"
-            -->
             <div id="user-menu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
               <!-- Active: "bg-gray-100", Not Active: "" -->
               <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
@@ -306,6 +228,25 @@
             menu.classList.add('transform', 'opacity-100', 'scale-100');
             menu.classList.remove('transform', 'opacity-0', 'scale-95');
         }
+    });
+
+    const closeButton = document.getElementById('close-button');
+    const openButton = document.getElementById('open-button');
+    const offCanvasMenu = document.getElementById('off-canvas-menu');
+    const offCanvasMenuOverlay = document.getElementById('off-canvas-menu-overlay');
+    closeButton.addEventListener('click', () => {
+        offCanvasMenu.classList.toggle('hidden');
+        offCanvasMenu.classList.remove('flex')
+        offCanvasMenuOverlay.classList.add('transition', 'ease-in-out', 'duration-300');
+        offCanvasMenuOverlay.classList.add('opacity-0');
+        offCanvasMenuOverlay.classList.remove('opacity-100');
+    });
+    openButton.addEventListener('click', () => {
+        offCanvasMenu.classList.toggle('hidden');
+        offCanvasMenu.classList.add('flex')
+        offCanvasMenuOverlay.classList.add('transition', 'ease-in-out', 'duration-300');
+        offCanvasMenuOverlay.classList.add('opacity-100');
+        offCanvasMenuOverlay.classList.remove('opacity-0');
     });
 </script>
 </body>
