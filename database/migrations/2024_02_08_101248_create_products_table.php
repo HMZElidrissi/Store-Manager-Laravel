@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->decimal('price');
+            $table->string('image', 255);
             $table->foreignId('category_id')->constrained('categories');
             $table->timestamps();
         });
-        DB::statement("ALTER TABLE products ADD image LONGBLOB");
     }
 
     /**
