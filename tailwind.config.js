@@ -3,8 +3,15 @@ export default {
     content: [
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
-        "./resources/**/*.vue",
     ],
+    mode: "jit",
+    darkMode: false,
+    purge: {
+        content: [
+            "./resources/**/*.blade.php",
+            "./resources/**/*.js",
+        ],
+    },
     theme: {
         extend: {},
     },
