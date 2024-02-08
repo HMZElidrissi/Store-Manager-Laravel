@@ -9,6 +9,7 @@ class Role extends Model
 {
     use HasFactory;
     protected $fillable = ['title'];
+    public $timestamps = false;
 
     public function permissions()
     {
