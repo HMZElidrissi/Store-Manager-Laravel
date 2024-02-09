@@ -24,6 +24,7 @@ class User extends Authenticatable
         'avatar',
         'rib',
         'address',
+        'role_id',
     ];
 
     public function role()
@@ -34,6 +35,24 @@ class User extends Authenticatable
     public function sales()
     {
         return $this->hasMany(Sale::class);
+    }
+
+    public static function createClient(array $attributes)
+    {
+        return self::create([
+            'name' => $attributes['name'],
+            'email' => $attributes['email'],
+            'password' => $attributes['password'],
+            // 'avatar' => $attributes['avatar'],
+            // 'rib' => $attributes['rib'],
+            // 'address' => $attributes['address'],
+            'role_id' => 3,
+        ]);
+    }
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
     }
 
     /**
