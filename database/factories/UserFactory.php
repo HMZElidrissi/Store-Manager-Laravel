@@ -32,7 +32,7 @@ class UserFactory extends Factory
             'avatar' => fake()->imageUrl(),
             'rib' => fake()->iban(),
             'address' => fake()->address(),
-            'role_id' => Role::factory(),
+            'role_id' => random_int(1, 3),
             'remember_token' => Str::random(10),
         ];
     }
