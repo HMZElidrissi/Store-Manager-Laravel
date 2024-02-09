@@ -30,7 +30,16 @@
     </main>
   </div>
 </div>
-
+@if (session()->has('success'))
+  <div id="success-message" class="fixed bg-green-500 text-white py-2 px-4 rounded-xl bottom-3 right-3 text-sm">
+    {{ session('success') }}
+  </div>
+@endif
+@if (session()->has('error'))
+  <div id="error-message" class="fixed bg-red-500 text-white py-2 px-4 rounded-xl bottom-3 right-3 text-sm">
+    {{ session('error') }}
+  </div>
+@endif
 <script src="{{ asset('js/app.js') }}"></script>
 @stack('scripts')
 </body>
