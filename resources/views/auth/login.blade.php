@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
-    <title>Sign up</title>
+    <title>Sign in</title>
 </head>
 <body class="h-full">
 <div class="min-h-full flex flex-col justify-center py-10 sm:px-4 lg:px-8">
@@ -16,20 +16,8 @@
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-            <form class="space-y-6" action="{{ route('register') }}" method="POST">
+            <form class="space-y-6" action="{{ route('login') }}" method="POST">
                 @csrf
-                <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700"> Full name </label>
-                    <div class="mt-1">
-                        <input id="name"
-                                name="name"
-                                type="text"
-                                autocomplete="name" required
-                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-amber-500 focus:border-amber-500 sm:text-sm"
-                                value="{{ old('name') }}"
-                                placeholder="Your full name ...">
-                    </div>
-                </div>
                 @error('name')
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -59,30 +47,27 @@
                                 placeholder="Your password ...">
                     </div>
                 </div>
-                <div>
-                    <label for="password_confirmation" class="block text-sm font-medium text-gray-700"> Confirm Password </label>
-                    <div class="mt-1">
-                        <input id="password_confirmation"
-                                name="password_confirmation"
-                                type="password"
-                                autocomplete="current-password" required
-                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-amber-500 focus:border-amber-500 sm:text-sm"
-                                placeholder="Confirm your password ...">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input id="remember-me" name="remember-me" type="checkbox"
+                               class="h-4 w-4 text-amber-600 focus:ring-amber-500 border-gray-300 rounded">
+                        <label for="remember-me" class="ml-2 block text-sm text-gray-900"> Remember me </label>
                     </div>
-                </div>
-                @php
-                    // TODO: Add fields for avatar, RIB and address
-                @endphp
-                <div class="text-center">
-                    <a href="{{ route('login') }}" class="font-medium text-sm text-amber-600 hover:text-amber-500"> Already have an account? Login!
-                    </a>
+
+                    <div class="text-sm">
+                        <a href="#" class="font-medium text-amber-600 hover:text-amber-500"> Forgot your password?
+                        </a>
+                    </div>
                 </div>
 
                 <div>
                     <button type="submit"
-                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
-                            Register
-                    </button>
+                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">Sign
+                        in</button>
+                    <a href="{{ route('register') }}"
+                       class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-amber-600 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
+                       Create an Account!
+                    </a>
                 </div>
             </form>
 

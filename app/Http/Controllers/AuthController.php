@@ -18,7 +18,7 @@ class AuthController extends Controller
     {
         $attributes = $request->validated();
         $user = User::createClient($attributes);
-        // auth()->login($user);
+        auth()->login($user);
         return redirect()->route('home')->with('success', 'Your account has been created.');
     }
 
@@ -29,19 +29,23 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
+        $credentials = $request->validated();
 
-        // Log the user in
-        if (auth()->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect('/dashboard');
+        if (auth()->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->route('home')->with('success', 'Welcome back!');
         }
 
-        // Redirect the user
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
+    }
+
+    public function logout(Request $request)
+    {
+        auth()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('table')->with('success', 'Goodbye!');
     }
 }
