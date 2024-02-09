@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('role_id')->constrained('roles');
             $table->string('rib')->nullable();
             $table->string('address')->nullable();
-            $table->binary('avatar')->nullable();
+            $table->string('avatar', 255)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
