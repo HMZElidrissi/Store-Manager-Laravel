@@ -15,8 +15,8 @@
     </div>
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-            <form class="space-y-6" action="{{ route('register') }}" method="POST">
+        <div class="bg-white py-6 px-6 shadow sm:rounded-lg sm:px-10">
+            <form class="space-y-6" action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-700"> Full name </label>
@@ -33,6 +33,45 @@
                 @error('name')
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
+                <div>
+                    <label for="rib" class="block text-sm font-medium text-gray-700"> RIB </label>
+                    <div class="mt-1">
+                        <input id="rib"
+                                name="rib"
+                                type="text"
+                                autocomplete="rib"
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-amber-500 focus:border-amber-500 sm:text-sm"
+                                value="{{ old('rib') }}"
+                                placeholder="Your RIB ...">
+                    </div>
+                </div>
+                @error('rib')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+                <div>
+                    <label for="address" class="block text-sm font-medium text-gray-700"> Address </label>
+                    <div class="mt-1">
+                        <textarea id="address"
+                                name="address"
+                                rows="3"
+                                autocomplete="address"
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-amber-500 focus:border-amber-500 sm:text-sm"
+                                placeholder="Your address ...">{{ old('address') }}</textarea>
+                    </div>
+                </div>
+                @error('address')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+                <div>
+                    <label for="avatar" class="block text-sm font-medium text-gray-700"> Avatar </label>
+                    <div class="mt-1">
+                        <input id="avatar"
+                                name="avatar"
+                                type="file"
+                                autocomplete="avatar"
+                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-amber-500 focus:border-amber-500 sm:text-sm">
+                    </div>
+                </div>
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700"> Email address </label>
                     <div class="mt-1">
@@ -70,9 +109,6 @@
                                 placeholder="Confirm your password ...">
                     </div>
                 </div>
-                @php
-                    // TODO: Add fields for avatar, RIB and address
-                @endphp
                 <div class="text-center">
                     <a href="{{ route('login') }}" class="font-medium text-sm text-amber-600 hover:text-amber-500"> Already have an account? Login!
                     </a>

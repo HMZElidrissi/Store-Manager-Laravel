@@ -27,6 +27,9 @@ class RegisterRequest extends FormRequest
             'password' => ['required', 'string', 'min:5', 'confirmed'],
             // This is equivalent to the following:
             // 'password' => 'required|string|min:5|confirmed',
+            'rib' => ['nullable', 'string', 'max:255'],
+            'address' => ['nullable', 'string', 'max:255'],
+            'avatar' => ['nullable', 'image', 'mimes:png,jpg,jpeg,gif,svg', 'max:2048'],
         ];
     }
 
@@ -50,6 +53,13 @@ class RegisterRequest extends FormRequest
             'password.string' => 'The password field must be a string.',
             'password.min' => 'The password field must be at least 5 characters.',
             'password.confirmed' => 'The password confirmation does not match.',
+            'rib.string' => 'The rib field must be a string.',
+            'rib.max' => 'The rib field must not exceed 255 characters.',
+            'address.string' => 'The address field must be a string.',
+            'address.max' => 'The address field must not exceed 255 characters.',
+            'avatar.image' => 'The avatar must be an image.',
+            'avatar.mimes' => 'The avatar must be a file of type: png, jpg, jpeg, gif, svg.',
+            'avatar.max' => 'The avatar must not exceed 2048 kilobytes.',
         ];
     }
 }

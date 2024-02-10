@@ -5,10 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
-use App\Models\User;
+use App\Repositories\ClientRepository;
 
 class AuthController extends Controller
 {
+    public function __construct(protected ClientRepository $clientRepository)
+    {
+        $this->clientRepository = $clientRepository;
+    }
+
     public function showRegisterForm()
     {
         return view('auth.register');
@@ -17,9 +22,10 @@ class AuthController extends Controller
     public function register(RegisterRequest $request)
     {
         $attributes = $request->validated();
-        $user = User::createClient($attributes);
+        $attributes = $this->clientRepository->uploadAvatar($request, $attributes);
+        $user = $this->clientRepository->create($attributes);
         auth()->login($user);
-        return redirect()->route('home')->with('success', 'Your account has been created.');
+        return redirect()->route('home')->with('success', 'Welcome to our platform!');
     }
 
     public function showLoginForm()

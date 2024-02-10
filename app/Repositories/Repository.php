@@ -40,6 +40,6 @@ abstract class Repository
 
     public function delete($id)
     {
-        return Model::destroy($id);
+        return $this->model->destroy($id);
     }
 }

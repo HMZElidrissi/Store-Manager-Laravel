@@ -46,3 +46,16 @@ setTimeout(() => {
     successMessage.classList.add("hidden");
     errorMessage.classList.add("hidden");
 }, 4000);
+
+function changeAvatar(event) {
+    let avatar = document.getElementById("profile-avatar");
+    let avatarPlaceholder = document.getElementById(
+        "profile-avatar-placeholder"
+    );
+    // let newAvatar = document.getElementById("new-avatar");
+    avatarPlaceholder.classList.add("hidden");
+    avatar.src = URL.createObjectURL(event.target.files[0]);
+    avatar.classList.remove("hidden");
+    // newAvatar.classList.remove("hidden");
+    // newAvatar.src = URL.createObjectURL(event.target.files[0]);
+}
