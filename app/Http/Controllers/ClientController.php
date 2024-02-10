@@ -53,6 +53,6 @@ class ClientController extends Controller
             Storage::delete($client->avatar);
         }
         $this->clientRepository->delete($id);
-        return redirect()->route('clients.index');
+        return redirect()->route('clients.index')->with('success', 'Client deleted successfully!');
     }
 }

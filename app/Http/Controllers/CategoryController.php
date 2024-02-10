@@ -38,7 +38,7 @@ class CategoryController extends Controller
     {
         $attributes = $request->validated();
         $this->categoryRepository->create($attributes);
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('success', 'Category created successfully!');
     }
 
     /**
@@ -56,7 +56,7 @@ class CategoryController extends Controller
     {
         $attributes = $request->validated();
         $this->categoryRepository->update($id, $attributes);
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('success', 'Category updated successfully!');
     }
 
     /**
@@ -65,6 +65,6 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $this->categoryRepository->delete($id);
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('success', 'Category deleted successfully!');
     }
 }
