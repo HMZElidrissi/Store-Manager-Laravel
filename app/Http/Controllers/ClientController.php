@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Repositories\ClientRepository;
+use App\Http\Requests\UpdateClientRequest;
 
 class ClientController extends Controller
 {
@@ -37,7 +38,7 @@ class ClientController extends Controller
     public function update(UpdateClientRequest $request, $id)
     {
         $attributes = $request->validated();
-        $this->clientRepository->update($attributes, $id);
+        $this->clientRepository->update($id, $attributes);
         return redirect()->route('clients.index');
     }
 
