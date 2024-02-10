@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('backOffice.layouts.app')
 
 @section('title', 'Manage Clients')
 
@@ -14,7 +14,9 @@
                             <p class="mt-1 text-sm text-gray-500">Update the client's information.</p>
                         </div>
                         <div class="mt-5 md:mt-0 md:col-span-2">
-                            <form class="space-y-6" action="{{ route('clients.update', $client->id) }}" method="POST">
+                            <form class="space-y-6" action="{{ route('clients.update', $client->id) }}" method="POST" enctype="multipart/form-data">
+                                @method('PUT')
+                                @csrf
                                 <div class="grid grid-cols-3 gap-6">
                                     <div class="col-span-3 sm:col-span-2">
                                         <label for="name" class="block text-sm font-medium text-gray-700"> Full name
