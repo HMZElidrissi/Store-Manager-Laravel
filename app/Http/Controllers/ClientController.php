@@ -38,8 +38,9 @@ class ClientController extends Controller
     public function update(UpdateClientRequest $request, $id)
     {
         $attributes = $request->validated();
+        $attributes = $this->clientRepository->uploadAvatar($request, $attributes);
         $this->clientRepository->update($id, $attributes);
-        return redirect()->route('clients.index');
+        return redirect()->route('clients.index')->with('success', 'Client updated successfully!');
     }
 
     /**
