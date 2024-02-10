@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,3 +38,10 @@ Route::post('/clients', [ClientController::class, 'store'])->name('clients.store
 Route::get('/clients/{id}/edit', [ClientController::class, 'edit'])->name('clients.edit');
 Route::put('/clients/{id}', [ClientController::class, 'update'])->name('clients.update');
 Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->name('clients.destroy');
+
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
+Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
