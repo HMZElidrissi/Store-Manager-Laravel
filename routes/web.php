@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PermissionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,12 +21,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 })->name('home');
-Route::get('/table', function () {
-    return view('table');
-})->name('table');
-Route::get('/table2', function () {
-    return view('table2');
-});
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('showRegisterForm');
@@ -53,3 +48,8 @@ Route::post('/products', [ProductController::class, 'store'])->name('products.st
 Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
 Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
 Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+Route:: get('/permissions', [PermissionController::class, 'index'])->name('permissions.index');
+Route:: get('/permissions/add', [PermissionController::class, 'add'])->name('permissions.add');
+Route:: post('/permissions/assign', [PermissionController::class, 'assign'])->name('permissions.assign');
+Route:: post('/permissions/revoke/{role}/{permission}', [PermissionController::class, 'revoke'])->name('permissions.revoke');

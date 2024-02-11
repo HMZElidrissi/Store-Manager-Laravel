@@ -37,6 +37,16 @@ class User extends Authenticatable
         return $this->hasMany(Sale::class);
     }
 
+    public function hasRole($role)
+    {
+        return $this->role->role === $role;
+    }
+
+    public function hasPermission($permission)
+    {
+        return $this->role->permissions->contains('permission', $permission);
+    }
+
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
