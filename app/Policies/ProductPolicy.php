@@ -13,7 +13,7 @@ class ProductPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->hasPermission('products.index');
     }
 
     /**

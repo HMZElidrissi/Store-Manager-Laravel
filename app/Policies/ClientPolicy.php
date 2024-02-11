@@ -12,7 +12,7 @@ class ClientPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->hasPermission('clients.index');
     }
 
     /**
