@@ -19,6 +19,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Category::class);
         $categories = $this->categoryRepository->getAll();
         return view('backOffice.categories.index', compact('categories'));
     }
@@ -28,6 +29,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Category::class);
         return view('backOffice.categories.create');
     }
 
@@ -36,6 +38,7 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
+        $this->authorize('create', Category::class);
         $attributes = $request->validated();
         $this->categoryRepository->create($attributes);
         return redirect()->route('categories.index')->with('success', 'Category created successfully!');
@@ -46,6 +49,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('update', Category::class);
         $category = $this->categoryRepository->getById($id);
         return view('backOffice.categories.edit', compact('category'));
     }
@@ -54,6 +58,7 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, $id)
     {
+        $this->authorize('update', Category::class);
         $attributes = $request->validated();
         $this->categoryRepository->update($id, $attributes);
         return redirect()->route('categories.index')->with('success', 'Category updated successfully!');
@@ -64,6 +69,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', Category::class);
         $this->categoryRepository->delete($id);
         return redirect()->route('categories.index')->with('success', 'Category deleted successfully!');
     }

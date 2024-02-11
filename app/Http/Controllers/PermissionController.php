@@ -18,12 +18,14 @@ class PermissionController extends Controller
 
     public function index()
     {
+        $this->authorize('viewAny', Permission::class);
         $permissions = $this->permissionRepository->getAll();
         return view('backOffice.permissions.index', compact('permissions'));
     }
 
     public function add()
     {
+        $this->authorize('assign', Permission::class);
         $roles = $this->roleRepository->getAll();
         $permissions = $this->permissionRepository->getAll();
         return view('backOffice.permissions.assign', compact('roles', 'permissions'));
@@ -31,6 +33,7 @@ class PermissionController extends Controller
 
     public function assign(Request $request)
     {
+        $this->authorize('assign', Permission::class);
         $role = $this->roleRepository->getById($request->role);
         $permission = $this->permissionRepository->getById($request->permission);
         $role->permissions()->attach($permission);
@@ -39,6 +42,7 @@ class PermissionController extends Controller
 
     public function revoke(Role $role, Permission $permission)
     {
+        $this->authorize('revoke', Permission::class);
         $role->permissions()->detach($permission);
         return redirect()->route('permissions.index')->with('success', 'Permission revoked successfully!');
     }

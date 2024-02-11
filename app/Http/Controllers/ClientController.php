@@ -19,6 +19,7 @@ class ClientController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', User::class);
         $clients = $this->clientRepository->getAllClients();
         return view('backOffice.clients.index', compact('clients'));
     }
@@ -28,6 +29,7 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('update', User::class);
         $client = $this->clientRepository->getById($id);
         return view('backOffice.clients.edit', compact('client'));
     }
@@ -37,6 +39,7 @@ class ClientController extends Controller
      */
     public function update(UpdateClientRequest $request, $id)
     {
+        $this->authorize('update', User::class);
         $attributes = $request->validated();
         $attributes = $this->clientRepository->uploadAvatar($request, $attributes);
         $this->clientRepository->update($id, $attributes);
@@ -48,6 +51,7 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', User::class);
         $client = $this->clientRepository->getById($id);
         if ($client->avatar) {
             Storage::delete($client->avatar);

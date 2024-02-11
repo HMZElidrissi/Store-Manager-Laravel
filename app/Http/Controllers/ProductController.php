@@ -22,6 +22,7 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Product::class);
         $products = $this->productRepository->getAll();
         return view('backOffice.products.index', compact('products'));
     }
@@ -31,6 +32,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Product::class);
         $categories = $this->categoryRepository->getAll();
         return view('backOffice.products.create', compact('categories'));
     }
@@ -40,6 +42,7 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
+        $this->authorize('create', Product::class);
         $attributes = $request->validated();
         $attributes = $this->productRepository->uploadImage($request, $attributes);
         $this->productRepository->create($attributes);
@@ -59,6 +62,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('update', Product::class);
         $categories = $this->categoryRepository->getAll();
         $product = $this->productRepository->getById($id);
         return view('backOffice.products.edit', compact('product', 'categories'));
@@ -69,6 +73,7 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, $id)
     {
+        $this->authorize('update', Product::class);
         $attributes = $request->validated();
         $attributes = $this->productRepository->uploadImage($request, $attributes);
         $this->productRepository->update($id, $attributes);
@@ -80,6 +85,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', Product::class);
         $product = $this->productRepository->getById($id);
         if($product->image) {
             Storage::delete($product->image);
