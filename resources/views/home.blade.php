@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('backOffice.layouts.app')
 
 @section('title', 'Page Title')
 

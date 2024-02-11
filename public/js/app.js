@@ -48,14 +48,33 @@ setTimeout(() => {
 }, 4000);
 
 function changeAvatar(event) {
-    let avatar = document.getElementById("profile-avatar");
-    let avatarPlaceholder = document.getElementById(
-        "profile-avatar-placeholder"
-    );
-    // let newAvatar = document.getElementById("new-avatar");
-    avatarPlaceholder.classList.add("hidden");
-    avatar.src = URL.createObjectURL(event.target.files[0]);
-    avatar.classList.remove("hidden");
-    // newAvatar.classList.remove("hidden");
-    // newAvatar.src = URL.createObjectURL(event.target.files[0]);
+    var input = event.target;
+    var reader = new FileReader();
+    reader.onload = function () {
+        var dataURL = reader.result;
+        var profileAvatar = document.getElementById("profile-avatar");
+        var profileAvatarPlaceholder = document.getElementById(
+            "profile-avatar-placeholder",
+        );
+        profileAvatar.src = dataURL;
+        profileAvatar.classList.remove("hidden");
+        profileAvatarPlaceholder.classList.add("hidden");
+    };
+    reader.readAsDataURL(input.files[0]);
+}
+
+function changeImage(event) {
+    var input = event.target;
+    var reader = new FileReader();
+    reader.onload = function () {
+        var dataURL = reader.result;
+        var productImage = document.getElementById("product-image");
+        var productImagePlaceholder = document.getElementById(
+            "product-image-placeholder",
+        );
+        productImage.src = dataURL;
+        productImage.classList.remove("hidden");
+        productImagePlaceholder.classList.add("hidden");
+    };
+    reader.readAsDataURL(input.files[0]);
 }
