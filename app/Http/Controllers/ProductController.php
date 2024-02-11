@@ -4,16 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use App\Models\Product;
+use App\Repositories\ProductRepository;
+use App\Repositories\CategoryRepository;
+use App\Http\Requests\UpdateClientRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
+    public function __construct(protected ProductRepository $productRepository, protected CategoryRepository $categoryRepository)
+    {
+        $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
+    }
+
     /**
      * Display a listing of the product.
      */
     public function index()
     {
-        //
+        $products = $this->productRepository->getAll();
+        return view('backOffice.products.index', compact('products'));
     }
 
     /**
@@ -21,7 +31,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = $this->categoryRepository->getAll();
+        return view('backOffice.products.create', compact('categories'));
     }
 
     /**
@@ -29,13 +40,16 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        $attributes = $request->validated();
+        $attributes = $this->productRepository->uploadImage($request, $attributes);
+        $this->productRepository->create($attributes);
+        return redirect()->route('products.index')->with('success', 'Product created successfully!');
     }
 
     /**
      * Display the specified product.
      */
-    public function show(Product $product)
+    public function show($id)
     {
         //
     }
@@ -43,24 +57,34 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified product.
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        $categories = $this->categoryRepository->getAll();
+        $product = $this->productRepository->getById($id);
+        return view('backOffice.products.edit', compact('product', 'categories'));
     }
 
     /**
      * Update the specified product in storage.
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(UpdateProductRequest $request, $id)
     {
-        //
+        $attributes = $request->validated();
+        $attributes = $this->productRepository->uploadImage($request, $attributes);
+        $this->productRepository->update($id, $attributes);
+        return redirect()->route('products.index')->with('success', 'Product updated successfully!');
     }
 
     /**
      * Remove the specified product from storage.
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        $product = $this->productRepository->getById($id);
+        if($product->image) {
+            Storage::delete($product->image);
+        }
+        $this->productRepository->delete($id);
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully!');
     }
 }

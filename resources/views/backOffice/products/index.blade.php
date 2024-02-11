@@ -1,17 +1,17 @@
 @extends('backOffice.layouts.app')
 
-@section('title', 'Manage Clients')
+@section('title', 'Manage products')
 
 @section('content')
 <div class="px-4 sm:px-6 lg:px-8">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-xl font-semibold text-gray-900">Clients</h1>
-      <p class="mt-2 text-sm text-gray-700">A list of all the clients registered.</p>
+      <h1 class="text-xl font-semibold text-gray-900">Products</h1>
+      <p class="mt-2 text-sm text-gray-700">A list of all the products in the store.</p>
     </div>
-    {{-- <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-      <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-amber-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 sm:w-auto">+ Add client</button>
-    </div> --}}
+    <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+      <a href="{{ route('products.create') }}" class="inline-flex items-center justify-center rounded-md border border-transparent bg-amber-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 sm:w-auto">+ Add product</a>
+    </div>
   </div>
   <div class="mt-8 flex flex-col">
     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -20,43 +20,46 @@
           <table class="min-w-full divide-y divide-gray-300">
             <thead class="bg-gray-50">
               <tr>
-                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">RIB</th>
-                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Address</th>
+                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Product</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Description</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Price</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-200 bg-white">
-              @foreach ($clients as $client)
+              @foreach ($products as $product)
                   <tr>
                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                   <div class="flex items-center">
                     <div class="h-10 w-10 flex-shrink-0">
-                      @if ($client->avatar)
-                        <img class="h-10 w-10 rounded-full" src="{{ asset('storage/' . $client->avatar) }}" alt="avatar">
+                      @if ($product->image)
+                        <img class="h-10 w-10 rounded-full" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->title }}">
                       @else
                         <span class="inline-block h-10 w-10 rounded-full overflow-hidden bg-gray-100">
                           <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                            <path fill-rule="evenodd" d="M14 7h-4v3a1 1 0 1 1-2 0V7H6a1 1 0 0 0-1 1L4 19.7A2 2 0 0 0 6 22h12c1 0 2-1 2-2.2L19 8c0-.5-.5-.9-1-.9h-2v3a1 1 0 1 1-2 0V7Zm-2-3a2 2 0 0 0-2 2v1H8V6a4 4 0 1 1 8 0v1h-2V6a2 2 0 0 0-2-2Z" clip-rule="evenodd"/>
                           </svg>
                         </span>
                       @endif
                     </div>
                     <div class="ml-4">
-                      <div class="font-medium text-gray-900">{{ $client->name }}</div>
-                      <div class="text-gray-500">{{ $client->email }}</div>
+                      <div class="font-medium text-gray-900">{{ $product->title }}
+                      </div>
+                      <div class="text-gray-500">{{ $product->category->title }}</div>
                     </div>
                   </div>
                 </td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                  <div class="text-gray-900">{{ $client->rib }}</div>
+                  <div class="text-gray-900">
+                    {{ Str::limit($product->description, 80) }}
+                  </div>
                 </td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                  <div class="text-gray-900">{{ $client->address }}</div>
+                  <div class="text-gray-900">{{ $product->price }}</div>
                 </td>
                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   <div class="flex space-x-2">
-                    <a href="{{ route('clients.edit', $client->id) }}">
+                    <a href="{{ route('products.edit', $product->id) }}">
                       <svg class="w-4 h-5 mx-2" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                           <g id="Dribbble-Light-Preview" transform="translate(-99.000000, -400.000000)" fill="#9ca3af">
@@ -68,7 +71,7 @@
                         </g>
                       </svg>
                     </a>
-                    <form action="{{ route('clients.destroy', $client->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
+                    <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
                       @csrf
                       @method('DELETE')
                       <button type="submit">
