@@ -13,7 +13,7 @@ class ProductPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasPermission('products.index');
+        return $user->role->hasPermission('products.index');
     }
 
     /**
@@ -29,7 +29,7 @@ class ProductPolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasPermission('products.store');
+        return $user->role->hasPermission('products.store');
             // ? Response::allow()
             // : Response::deny('You do not have permission to create a product.');
     }
@@ -39,7 +39,7 @@ class ProductPolicy
      */
     public function update(User $user, Product $product): bool
     {
-        return $user->hasPermission('products.update');
+        return $user->role->hasPermission('products.update');
             // ? Response::allow()
             // : Response::deny('You do not have permission to update a product.');
     }
@@ -49,7 +49,7 @@ class ProductPolicy
      */
     public function delete(User $user, Product $product): bool
     {
-        return $user->hasPermission('products.destroy');
+        return $user->role->hasPermission('products.destroy');
             // ? Response::allow()
             // : Response::deny('You do not have permission to delete a product.');
     }

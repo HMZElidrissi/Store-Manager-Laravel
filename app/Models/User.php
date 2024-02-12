@@ -42,11 +42,6 @@ class User extends Authenticatable
         return $this->role->role === $role;
     }
 
-    public function hasPermission($permission)
-    {
-        return $this->role->permissions->contains($permission);
-    }
-
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);

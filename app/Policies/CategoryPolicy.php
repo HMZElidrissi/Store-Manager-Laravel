@@ -13,7 +13,7 @@ class CategoryPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasPermission('categories.index');
+        return $user->role->hasPermission('categories.index');
     }
 
     /**
@@ -29,7 +29,7 @@ class CategoryPolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasPermission('categories.store');
+        return $user->role->hasPermission('categories.store');
     }
 
     /**
@@ -37,7 +37,7 @@ class CategoryPolicy
      */
     public function update(User $user, Category $category): bool
     {
-        return $user->hasPermission('categories.update');
+        return $user->role->hasPermission('categories.update');
     }
 
     /**
@@ -45,7 +45,7 @@ class CategoryPolicy
      */
     public function delete(User $user, Category $category): bool
     {
-        return $user->hasPermission('categories.destroy');
+        return $user->role->hasPermission('categories.destroy');
     }
 
     /**

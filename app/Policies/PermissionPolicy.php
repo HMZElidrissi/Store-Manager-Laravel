@@ -13,7 +13,7 @@ class PermissionPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasPermission('permissions.index');
+        return $user->role->hasPermission('permissions.index');
     }
 
     /**
@@ -21,7 +21,7 @@ class PermissionPolicy
      */
     public function assign(User $user): bool
     {
-        return $user->hasPermission('permissions.assign');
+        return $user->role->hasPermission('permissions.assign');
     }
 
     /**
@@ -29,6 +29,6 @@ class PermissionPolicy
      */
     public function revoke(User $user): bool
     {
-        return $user->hasPermission('permissions.revoke');
+        return $user->role->hasPermission('permissions.revoke');
     }
 }
