@@ -29,4 +29,9 @@ class ClientRepository extends Repository
         }
         return $attributes;
     }
+
+    public function findByEmail($email)
+    {
+        return $this->model->where('email', $email)->first();
+    }
 }

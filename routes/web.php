@@ -27,8 +27,17 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/register', [AuthController::class, 'register'])->name('register');
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('showLoginForm');
     Route::post('/login', [AuthController::class, 'login'])->name('login');
+    Route::get('/password/reset', [AuthController::class, 'showResetForm'])->name('password.request');
+    Route::post('/password/reset', [AuthController::class, 'reset'])->name('password.email');
+    Route::get('/password/reset/{token}', [AuthController::class, 'showUpdatePasswordForm'])->name('password.reset');
+    Route::post('/password/reset', [AuthController::class, 'updatePassword'])->name('password.update');
 });
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+    
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('authenticated')->name('logout');
 Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
 Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
 Route::get('/clients/{id}/edit', [ClientController::class, 'edit'])->name('clients.edit');

@@ -22,7 +22,8 @@
           </form>
         </div>
         <div class="ml-4 flex items-center md:ml-6">
-          <div class="text-gray-500">{{ Auth::user()->name }}</div>
+          {{-- <div class="text-gray-500">{{ Auth::user()->name }}</div> --}}
+          <div class="text-gray-500">{{ Session::get('user')->name }}</div>
         </div>
         <div class="ml-4 flex items-center md:ml-6">
           <button type="button" class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
