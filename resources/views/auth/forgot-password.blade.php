@@ -13,10 +13,18 @@
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
         <img class="mx-auto h-16 w-auto" src="{{ asset('img/logo1.png') }}" alt="Logo">
     </div>
+    @if (session('status'))
+        <div class="sm:mx-auto sm:w-full sm:max-w-md">
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                <strong class="font-bold">Success!</strong>
+                <span class="block sm:inline">{{ session('status') }}</span>
+            </div>
+        </div>
+    @endif
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-            <form class="space-y-6" action="{{ route('login') }}" method="POST">
+            <form class="space-y-6" action="{{ route('password.email') }}" method="POST">
                 @csrf
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700"> Email address </label>
@@ -29,6 +37,12 @@
                                value="{{ old('email') }}"
                                placeholder="Your email address ...">
                     </div>
+                </div>
+                <div>
+                    <button type="submit"
+                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
+                        Send Password Reset Link
+                    </button>
                 </div>
             </form>
         </div>
