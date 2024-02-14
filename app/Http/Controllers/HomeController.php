@@ -17,12 +17,11 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        $paginator = new Paginator([], 0, 3);
         $products = $this->productRepository->query($request)
             ->paginate(3)
             ->withQueryString();
         $categories = $this->categoryRepository->getAll();
         return view('frontOffice.home',
-            compact('products', 'categories', 'paginator'));
+            compact('products', 'categories'));
     }
 }
