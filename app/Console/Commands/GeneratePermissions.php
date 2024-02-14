@@ -51,6 +51,7 @@ class GeneratePermissions extends Command
     {
         $excludedPermissions = [
             'home',
+            'dashboard',
             'showRegisterForm',
             'register',
             'showLoginForm',
@@ -96,6 +97,9 @@ class GeneratePermissions extends Command
                 $permission->roles()->attach(1);
             }
             if(\str_starts_with($permission->permission, 'products')){
+                $permission->roles()->attach(2);
+            }
+            if(\str_starts_with($permission->permission, 'sales')){
                 $permission->roles()->attach(2);
             }
             if(\str_starts_with($permission->permission, 'permissions')){

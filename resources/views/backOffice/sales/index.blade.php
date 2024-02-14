@@ -46,7 +46,7 @@
                   <div class="text-gray-900">{{ $sale->product->price * $sale->quantity }}</div>
                 </td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                    <div class="py-1 px-2 rounded border text-center {{ $sale->status == 'delivered' ? 'border-green-500 text-green-500' : 'border-amber-500 text-amber-500' }}">
+                    <div class="py-1 px-2 rounded border text-center {{ $sale->status == 'delivered' ? 'border-green-500 text-green-500' : ($sale->status == 'pending' ? 'border-amber-500 text-amber-500' : 'border-indigo-500 text-indigo-500') }}">
                         {{ ucfirst($sale->status) }}
                     </div>
                 </td>
