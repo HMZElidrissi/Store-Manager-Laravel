@@ -30,9 +30,10 @@ class SaleController extends Controller
         return redirect()->route('home')->with('success', 'Product bought successfully!');
     }
 
-    public function show(Sale $sale)
+    public function show()
     {
-        return view('backOffice.sales.show', compact('sale'));
+        $sales = $this->saleRepository->getAll(['client_id' => auth()->user()->id]);
+        return view('frontOffice.sales', compact('sales'));
     }
 
     public function markAsDelivered($id)

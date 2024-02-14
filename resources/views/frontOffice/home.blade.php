@@ -36,7 +36,7 @@
                 @foreach($products as $product)
                     <div class="group relative bg-white border border-gray-200 rounded-lg flex flex-col overflow-hidden">
                         <div class="aspect-w-3 aspect-h-4 bg-gray-200 group-hover:opacity-75 sm:aspect-none sm:h-96">
-                            <img src="{{ $product->image }}" alt="{{ $product->title }}" class="w-full h-full object-center object-cover sm:w-full sm:h-full">
+                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->title }}" class="w-full h-full object-center object-cover sm:w-full sm:h-full">
                         </div>
                         <div class="flex-1 p-4 space-y-2 flex flex-col">
                             <h3 class="text-sm font-medium text-gray-900">

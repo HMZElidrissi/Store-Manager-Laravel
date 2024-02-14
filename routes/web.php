@@ -76,4 +76,5 @@ Route::group(['middleware' => 'auth'], function () {
     // sales routes
     Route::get('/sales', [SaleController::class, 'index'])->name('sales.index');
     Route::put('/sales/{id}', [SaleController::class, 'markAsDelivered'])->name('sales.markAsDelivered');
+    Route::get('/mysales', [SaleController::class, 'show'])->name('mysales');
 });
