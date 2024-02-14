@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Repositories\ProductRepository;
 use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 class HomeController extends Controller
 {
