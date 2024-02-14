@@ -72,4 +72,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route:: get('/permissions/add', [PermissionController::class, 'add'])->name('permissions.add');
     Route:: post('/permissions/assign', [PermissionController::class, 'assign'])->name('permissions.assign');
     Route:: post('/permissions/revoke/{role}/{permission}', [PermissionController::class, 'revoke'])->name('permissions.revoke');
+
+    // sales routes
+    Route::get('/sales', [SaleController::class, 'index'])->name('sales.index');
+    Route::put('/sales/{id}', [SaleController::class, 'markAsDelivered'])->name('sales.markAsDelivered');
 });

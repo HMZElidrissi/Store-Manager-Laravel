@@ -49,15 +49,15 @@
             Categories
           </a>
           @endcan
-          {{-- @can('viewAny', App\Models\Sale::class) --}}
-          <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-amber-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
+           @can('viewAny', App\Models\Sale::class)
+          <a href="{{ route('sales.index') }}" class="text-gray-600 hover:bg-gray-50 hover:text-amber-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
             <!-- Heroicon name: outline/inbox -->
             <svg class="text-gray-400 group-hover:text-amber-600 mr-4 flex-shrink-0 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.3L19 7H7.3"/>
             </svg>
             Sales
           </a>
-          {{-- @endcan --}}
+           @endcan
           @can('viewAny', App\Models\Permission::class)
           <a href="{{ route('permissions.index') }}" class="text-gray-600 hover:bg-gray-50 hover:text-amber-600 group flex items-center px-2 py-2 text-base font-medium rounded-md">
             <!-- Heroicon name: outline/chart-bar -->
@@ -119,15 +119,15 @@
             Categories
           </a>
           @endcan
-          {{-- @can('viewAny', App\Models\Sale::class) --}}
-          <a href="#" class="text-gray-600 hover:bg-gray-50 hover:text-amber-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+           @can('viewAny', App\Models\Sale::class)
+          <a href="{{ route('sales.index') }}" class="text-gray-600 hover:bg-gray-50 hover:text-amber-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
             <!-- Heroicon name: outline/inbox -->
             <svg class="text-gray-400 group-hover:text-amber-600 mr-3 flex-shrink-0 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.3L19 7H7.3"/>
             </svg>
             Sales
           </a>
-          {{-- @endcan --}}
+           @endcan
           @can('viewAny', App\Models\Permission::class)
           <a href="{{ route('permissions.index') }}" class="text-gray-600 hover:bg-gray-50 hover:text-amber-600 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
             <!-- Heroicon name: outline/chart-bar -->

@@ -19,4 +19,10 @@ class SaleRepository extends Repository
         $sale->quantity = $quantity;
         $sale->save();
     }
+
+    public function markAsDelivered(Sale $sale)
+    {
+        $sale->status = 'delivered';
+        $sale->save();
+    }
 }
