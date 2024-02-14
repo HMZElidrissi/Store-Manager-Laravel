@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('backOffice.layouts.app')
 
-@section('title', 'Page Title')
+@section('title', 'Dashboard')
 
 @section('content')
 <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">

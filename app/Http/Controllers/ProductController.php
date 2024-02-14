@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Product;
 use App\Repositories\ProductRepository;
 use App\Repositories\CategoryRepository;
-use App\Http\Requests\UpdateClientRequest;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -47,14 +47,6 @@ class ProductController extends Controller
         $attributes = $this->productRepository->uploadImage($request, $attributes);
         $this->productRepository->create($attributes);
         return redirect()->route('products.index')->with('success', 'Product created successfully!');
-    }
-
-    /**
-     * Display the specified product.
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**

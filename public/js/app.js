@@ -78,3 +78,14 @@ function changeImage(event) {
     };
     reader.readAsDataURL(input.files[0]);
 }
+
+function confirmQuantity(form) {
+    var quantity = prompt("Please enter the quantity", "1");
+    if (quantity == null || quantity === "") {
+        alert("You must enter a quantity.");
+        return false;
+    } else {
+        form.quantity.value = quantity;
+        return true;
+    }
+}

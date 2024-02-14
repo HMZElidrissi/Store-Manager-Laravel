@@ -2,63 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\Sale;
+use App\Repositories\ProductRepository;
+use App\Repositories\SaleRepository;
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
 {
-    /**
-     * Display a listing of the sale.
-     */
-    public function index()
+    public function __construct(protected ProductRepository $productRepository, protected SaleRepository $saleRepository)
     {
-        //
+        $this->productRepository = $productRepository;
+        $this->saleRepository = $saleRepository;
     }
 
-    /**
-     * Show the form for creating a new sale.
-     */
-    public function create()
+    public function buy(Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created sale in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified sale.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified sale.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified sale in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified sale from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $product_id = $request->product_id;
+        $quantity = $request->quantity;
+        $this->saleRepository->buy($product_id, $quantity);
+        return redirect()->route('home')->with('success', 'Product bought successfully!');
     }
 }

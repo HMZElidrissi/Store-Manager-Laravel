@@ -55,7 +55,7 @@ class AuthController extends Controller
         auth()->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('table')->with('success', 'Goodbye!');
+        return redirect()->route('home')->with('success', 'Goodbye!');
     }
 
     public function forgotPassword()
