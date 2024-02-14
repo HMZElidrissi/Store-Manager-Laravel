@@ -18,4 +18,17 @@ class ProductRepository extends Repository
         }
         return $attributes;
     }
+
+    public function query($request)
+    {
+        $query = $this->model->query();
+        if ($request->has('search') && $request->input('search') != '') {
+            $query->where('title', 'like', '%' . $request->input('search') . '%');
+        } elseif ($request->has('category') && $request->input('category') != '') {
+            $query->where('category_id', $request->input('category'));
+        } else {
+            $query->latest();
+        }
+        return $query;
+    }
 }
