@@ -1,3 +1,12 @@
+const successMessage = document.getElementById("success-message");
+const errorMessage = document.getElementById("error-message");
+
+setTimeout(() => {
+    successMessage.classList.add("hidden");
+    errorMessage.classList.add("hidden");
+}, 4000);
+
+
 const userMenuButton = document.getElementById("user-menu-button");
 const menu = document.getElementById("user-menu");
 userMenuButton.addEventListener("click", () => {
@@ -39,13 +48,6 @@ openButton.addEventListener("click", () => {
     offCanvasMenuOverlay.classList.add("opacity-100");
     offCanvasMenuOverlay.classList.remove("opacity-0");
 });
-
-const successMessage = document.getElementById("success-message");
-const errorMessage = document.getElementById("error-message");
-setTimeout(() => {
-    successMessage.classList.add("hidden");
-    errorMessage.classList.add("hidden");
-}, 4000);
 
 function changeAvatar(event) {
     var input = event.target;

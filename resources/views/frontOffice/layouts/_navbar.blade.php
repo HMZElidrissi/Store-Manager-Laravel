@@ -13,9 +13,12 @@
         @endif
 
         @if(auth()->user())
-            <a href="{{ route('logout') }}" class="bg-amber-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
-                Logout
-            </a>
+            <form action="{{ route('logout') }}" method="POST" class="inline">
+                @csrf
+                <button type="submit" class="bg-amber-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                    Logout
+                </button>
+            </form>
         @else
             <a href="{{ route('showLoginForm') }}" class="bg-amber-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                 Sign in

@@ -5,7 +5,6 @@ export default {
         "./resources/**/*.js",
     ],
     mode: "jit",
-    darkMode: false,
     purge: {
         content: [
             "./resources/**/*.blade.php",
