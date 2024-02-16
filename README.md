@@ -48,3 +48,16 @@ Adidas is introducing an internal authentication and management system. This sys
 
 ### Policies
 - Managing authorization at the action and resource level.
+
+## Installation
+
+Follow these steps to install the project:
+1. Clone the repository: `git clone https://github.com/HMZElidrissi/Store-Manager-Laravel.git`
+2. Install the dependencies: `composer install`
+3. Create a `.env` file: `cp .env.example .env`
+4. Generate the application key: `php artisan key:generate`
+5. Create a database and update the `.env` file with the database credentials.
+6. Run the migrations: `php artisan migrate --seed`
+7. Generate the storage link: `php artisan storage:link`
+8. Generate permissions: `php artisan generate:permissions`
+9. Serve the application: `php artisan serve`
