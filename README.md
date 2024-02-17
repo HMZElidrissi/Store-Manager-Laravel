@@ -1,16 +1,15 @@
 # Store Management System - Laravel
 
 ## Project Description
-
-Adidas is introducing an internal authentication and management system. This system provides an interface for administrators and sellers to efficiently manage products, categories, clients, and sales. The goal is to maintain a high level of customer service quality.
+This system provides an interface for administrators and sellers to efficiently manage products, categories, clients, and sales. Also a system to manage permissions for each type of user is implemented.
 
 ## Key Features
 
 ### CRUD for Entities
 - **Categories**: Create, update, and delete categories.
 - **Products**: Manage products with details such as name, description, price, images, tags.
-- **Clients (Bonus)**: Manage client information like name, email, credit card, address.
-- **Sales Management (Bonus)**: View and update the status of customer orders.
+- **Clients**: Manage client information like name, email, credit card, address.
+- **Sales Management**: View and update the status of customer orders.
 
 ### Authentication
 - Implementation of a custom Laravel authentication system.
