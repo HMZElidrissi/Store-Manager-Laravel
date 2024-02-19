@@ -5,12 +5,6 @@ export default {
         "./resources/**/*.js",
     ],
     mode: "jit",
-    purge: {
-        content: [
-            "./resources/**/*.blade.php",
-            "./resources/**/*.js",
-        ],
-    },
     theme: {
         extend: {},
     },
